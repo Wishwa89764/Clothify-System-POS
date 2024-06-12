@@ -105,7 +105,7 @@ public class AddEmployeeFormController implements Initializable {
 
     @FXML
     void btnAddNewEmpOnAction(ActionEvent event) {
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd-YYYY");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateDob = null;
         Date recuitmentDate = null;
 
@@ -210,6 +210,8 @@ public class AddEmployeeFormController implements Initializable {
             txtEmgAddress1.setText(employee.getEmgContactAddress1());
             txtEmgAddress2.setText(employee.getEmgContactAddress2());
             txtEmgAddress3.setText(employee.getEmgContactAddress3());
+            Image image = new Image(employee.getImgUrl());
+            imgEmployee.setImage(image);
         }
     }
 

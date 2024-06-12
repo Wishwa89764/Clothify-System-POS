@@ -12,8 +12,7 @@ public class EmployeeController implements EmployeeService {
 
     private static EmployeeController instance;
 
-    private EmployeeController() {
-    }
+    private EmployeeController() {}
 
     public static EmployeeController getInstance() {
         if (instance == null) {
@@ -102,10 +101,10 @@ public class EmployeeController implements EmployeeService {
 
     @Override
     public boolean addEmployee(Employee employee) {
-        String SQL = "INSERT INTO employee VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO employee VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             CrudUtil.execute(
-                    SQL,
+                    sql,
                     employee.getEmployeeId(),
                     employee.getFirstName(),
                     employee.getLastName(),
