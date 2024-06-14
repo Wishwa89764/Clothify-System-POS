@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="686.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.supplier.SupplierManagementFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192a56" height="48.0" stroke="BLACK" strokeType="INSIDE" width="868.0" />
+      <Label alignment="CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="51.0" prefWidth="868.0" text="Supplier Management" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="59.0" text="SUP ID :" textFill="#900404">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbSupplierID" layoutX="125.0" layoutY="63.0" onAction="#cmbSupplierIDOnAction" prefHeight="25.0" prefWidth="110.0" promptText="00000000" />
+      <Separator layoutX="11.0" layoutY="97.0" prefHeight="4.0" prefWidth="857.0" />
+      <Label fx:id="lblCurrentDate" alignment="CENTER" layoutX="290.0" layoutY="61.0" prefHeight="26.0" prefWidth="144.0" text="06-09-2024" textFill="#718093">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Separator layoutX="268.0" layoutY="59.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+      <Separator layoutX="454.0" layoutY="60.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+      <Label fx:id="lblCurrentTime" alignment="CENTER" layoutX="469.0" layoutY="61.0" prefHeight="26.0" prefWidth="144.0" text="07:20 PM" textFill="#718093">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Separator layoutX="623.0" layoutY="60.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+      <Label alignment="CENTER" layoutX="635.0" layoutY="61.0" prefHeight="26.0" prefWidth="99.0" text="Your ID :" textFill="#718093">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUserID" alignment="CENTER" layoutX="732.0" layoutY="61.0" prefHeight="26.0" prefWidth="121.0" text="User ID :" textFill="#718093">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="244.0" layoutY="63.0" onAction="#btnReloadOnAction" prefHeight="25.0" prefWidth="16.0" style="-fx-background-color: #e84118;" text="&lt;">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtFirstName" layoutX="39.0" layoutY="131.0" prefHeight="25.0" prefWidth="323.0" promptText="First Name" />
+      <JFXTextField fx:id="txtLastName" layoutX="39.0" layoutY="182.0" prefHeight="25.0" prefWidth="323.0" promptText="Last Name" />
+      <JFXComboBox fx:id="cmbSex" layoutX="38.0" layoutY="239.0" prefHeight="25.0" prefWidth="174.0" promptText="SEX" />
+      <JFXTextField fx:id="txtNicNo" layoutX="39.0" layoutY="289.0" prefHeight="25.0" prefWidth="323.0" promptText="National ID No" />
+      <JFXTextField fx:id="txtMobileNo" layoutX="39.0" layoutY="338.0" prefHeight="25.0" prefWidth="323.0" promptText="Mobile No" />
+      <JFXTextField fx:id="txtSupplierAddress1" layoutX="39.0" layoutY="384.0" prefHeight="25.0" prefWidth="323.0" promptText="Adress Line 1" />
+      <JFXTextField fx:id="txtSupplierAddress2" layoutX="39.0" layoutY="430.0" prefHeight="25.0" prefWidth="323.0" promptText="Adress Line 2" />
+      <JFXTextField fx:id="txtSupplierAddress3" layoutX="39.0" layoutY="478.0" prefHeight="25.0" prefWidth="323.0" promptText="Adress Line 3" />
+      <Separator layoutX="384.0" layoutY="176.0" orientation="VERTICAL" prefHeight="317.0" prefWidth="0.0" />
+      <JFXTextField fx:id="txtCompanyName" layoutX="409.0" layoutY="130.0" prefHeight="25.0" prefWidth="272.0" promptText="Company Name" />
+      <JFXTextField fx:id="txtRegNo" layoutX="410.0" layoutY="182.0" prefHeight="25.0" prefWidth="272.0" promptText="Reg No" />
+      <JFXTextField fx:id="txtTelNo" layoutX="409.0" layoutY="233.0" prefHeight="25.0" prefWidth="272.0" promptText="Telephone No" />
+      <JFXTextField fx:id="txtEmail" layoutX="409.0" layoutY="289.0" prefHeight="25.0" prefWidth="272.0" promptText="E-Mail Address" />
+      <JFXTextField fx:id="txtComAddress1" layoutX="410.0" layoutY="337.0" prefHeight="25.0" prefWidth="272.0" promptText="Address Line 1" />
+      <JFXTextField fx:id="txtComAddress2" layoutX="410.0" layoutY="384.0" prefHeight="25.0" prefWidth="272.0" promptText="Address Line 2" />
+      <JFXTextField fx:id="txtComAddress3" layoutX="410.0" layoutY="433.0" prefHeight="25.0" prefWidth="272.0" promptText="Address Line 3" />
+      <DatePicker fx:id="dateOfRecruit" layoutX="407.0" layoutY="481.0" promptText="Date Of Recruitment" />
+      <Separator layoutX="208.0" layoutY="531.0" prefHeight="4.0" prefWidth="464.0" />
+      <JFXTextField fx:id="txtBankHolderName" layoutX="38.0" layoutY="572.0" prefHeight="25.0" prefWidth="474.0" promptText="Name Of Account Holder" />
+      <JFXTextField fx:id="txtBankName" layoutX="36.0" layoutY="616.0" prefHeight="25.0" prefWidth="217.0" promptText="Name of Bank" />
+      <JFXTextField fx:id="txtBranch" layoutX="291.0" layoutY="616.0" prefHeight="25.0" prefWidth="217.0" promptText="Branch Name" />
+      <JFXTextField fx:id="txtAccountNo" layoutX="541.0" layoutY="616.0" prefHeight="25.0" prefWidth="217.0" promptText="Account No" />
+      <JFXButton fx:id="btnAddNewEmp" buttonType="RAISED" layoutX="726.0" layoutY="234.0" onAction="#btnAddNewEmpOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #3498db;" text="Add New" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdateEmp" buttonType="RAISED" layoutX="726.0" layoutY="295.0" onAction="#btnUpdateEmpOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #ffa801;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDeleteEmp" buttonType="RAISED" layoutX="726.0" layoutY="356.0" onAction="#btnDeleteEmpOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #ff3f34;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" layoutX="1.0" layoutY="543.0" prefHeight="17.0" prefWidth="868.0" text="Bank Account Details" textFill="#790404" underline="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

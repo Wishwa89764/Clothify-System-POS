@@ -29,3 +29,15 @@ Csrc/main/java/edu/icet/pos/controller/supplier/SupplierService.java,9\b\9b39cf
 .src/main/java/edu/icet/pos/model/Supplier.java,e\6\e68839481ebb629abe1a9c9f5cf105fb136525f7
 v
 Fsrc/main/java/edu/icet/pos/controller/supplier/SupplierController.java,4\e\4e8e6b49711831f0dddf7e88736cb339099f5fbc
+|
+Lsrc/main/java/edu/icet/pos/controller/item/ItemManagementFormController.java,0\6\06b17c48060f4527a35876c2b3fec8d961bf16ee
+u
+Esrc/main/java/edu/icet/pos/controller/item/AddItemFromController.java,6\c\6cf068fb3d7242ee34b6c1445cb211438fe3a440
+v
+Fsrc/main/java/edu/icet/pos/controller/mainForm/MainFormController.java,e\f\effd706bd6738a498abe7896bfd99a07e709df83
+k
+;src/main/java/edu/icet/pos/controller/item/ItemService.java,4\6\46bdf3eaaf2652ff0782c929586fcc2ba8f5ece7
+Z
+*src/main/java/edu/icet/pos/model/Item.java,d\a\dabd5f18a9218c8766c4d7f31b9d5a55881bb5a2
+n
+>src/main/java/edu/icet/pos/controller/item/ItemController.java,c\d\cd9bca844b0c0b40e12fe0434f19f442937c9de7

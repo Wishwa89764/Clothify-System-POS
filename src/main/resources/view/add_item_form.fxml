@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="575.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.item.AddItemFromController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192a56" height="48.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="868.0" />
+      <Label alignment="CENTER" layoutX="-2.0" layoutY="-3.0" prefHeight="51.0" prefWidth="868.0" text="Add New Items " textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Separator layoutX="11.0" layoutY="96.0" prefHeight="4.0" prefWidth="857.0" />
+      <Separator layoutX="268.0" layoutY="58.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+      <Separator layoutX="630.0" layoutY="59.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="0.0" />
+      <JFXComboBox fx:id="cmbCategory" layoutX="21.0" layoutY="61.0" onAction="#cmbCategoryOnAction" prefHeight="25.0" prefWidth="221.0" promptText="Select Category" />
+      <Label layoutX="327.0" layoutY="61.0" text="Item ID :" textFill="#6f0404">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblItemID" layoutX="423.0" layoutY="61.0" prefHeight="27.0" prefWidth="130.0" text="0000000000" textFill="#140101">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="61.0" text="Your ID:" textFill="#6f0404">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUserID" layoutX="727.0" layoutY="61.0" prefHeight="27.0" prefWidth="130.0" text="0000000000" textFill="#140101">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtItemName" layoutX="62.0" layoutY="197.0" prefHeight="25.0" prefWidth="305.0" promptText="Item Name" />
+      <JFXTextField fx:id="txtItemDescription" layoutX="62.0" layoutY="274.0" prefHeight="25.0" prefWidth="305.0" promptText="Description" />
+      <TextArea fx:id="imgItem" layoutX="509.0" layoutY="107.0" prefHeight="427.0" prefWidth="320.0" />
+      <Separator layoutX="437.0" layoutY="158.0" orientation="VERTICAL" prefHeight="200.0" />
+      <JFXButton buttonType="RAISED" layoutX="125.0" layoutY="343.0" onAction="#btnUploadImageOnAction" prefHeight="48.0" prefWidth="179.0" style="-fx-background-color: #222f3e;" text="Upload Image" textFill="#84facc">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="298.0" layoutY="487.0" onAction="#btnAddItemOnAction" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #273c75;" text="Add Item" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="46.0" layoutY="487.0" onAction="#btnCloseOnActiion" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #c0392b;" text="Close" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
