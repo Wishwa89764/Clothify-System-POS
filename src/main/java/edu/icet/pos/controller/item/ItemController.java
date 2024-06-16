@@ -4,6 +4,7 @@ import edu.icet.pos.crudUtil.CrudUtil;
 import edu.icet.pos.db.DBConnection;
 import edu.icet.pos.model.Item;
 import javafx.collections.ObservableList;
+import lombok.RequiredArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,17 +12,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
 
+@RequiredArgsConstructor
 public class ItemController implements ItemService{
 
-    final Connection connection;
-    final Statement statement;
+    private final Connection connection;
+    private final Statement statement;
+    String letter="([A-Z])";
 
-    final String letter="([A-Z])";
-
-    {
+    public ItemController(){
         try {
-            connection = DBConnection.getInstance().getConnection();
-            statement = connection.createStatement();
+            connection=DBConnection.getInstance().getConnection();
+            statement= connection.createStatement();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -51,9 +52,7 @@ public class ItemController implements ItemService{
                     item.getImgUrl()
 
             );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         return false;
@@ -61,7 +60,6 @@ public class ItemController implements ItemService{
 
     @Override
     public String generateItemCode(String category) {
-        System.out.println(category);
         try {
             final String KIDS="KIDS Wear";
             final String MENS="MENS Wear";
@@ -73,16 +71,25 @@ public class ItemController implements ItemService{
             ResultSet resultSet = null;
 
             switch (category){
-                case KIDS : resultSet=statement.executeQuery("SELECT COUNT(*) FROM item WHERE item_code LIKE 'KID%'");
-                    System.out.println(1);
+                case KIDS : resultSet=statement.executeQuery(
+                        "SELECT COUNT(*) FROM item WHERE item_code LIKE 'KID%'"
+                );
                     break;
-                case MENS : resultSet=statement.executeQuery("SELECT COUNT(*) FROM item WHERE item_code LIKE 'MEN%'");
+                case MENS : resultSet=statement.executeQuery(
+                        "SELECT COUNT(*) FROM item WHERE item_code LIKE 'MEN%'"
+                );
                     break;
-                case LADIES : resultSet=statement.executeQuery("SELECT COUNT(*) FROM item WHERE item_code LIKE 'LAD%'");
+                case LADIES : resultSet=statement.executeQuery(
+                        "SELECT COUNT(*) FROM item WHERE item_code LIKE 'LAD%'"
+                );
                     break;
-                case TOY : resultSet=statement.executeQuery("SELECT COUNT(*) FROM item WHERE item_code LIKE 'TOY%'");
+                case TOY : resultSet=statement.executeQuery(
+                        "SELECT COUNT(*) FROM item WHERE item_code LIKE 'TOY%'"
+                );
                     break;
-                case OTHER : resultSet=statement.executeQuery("SELECT COUNT(*) FROM item WHERE item_code LIKE 'OTH%'");
+                case OTHER : resultSet=statement.executeQuery(
+                        "SELECT COUNT(*) FROM item WHERE item_code LIKE 'OTH%'"
+                );
                     break;
                 default: break;
             }
@@ -129,7 +136,9 @@ public class ItemController implements ItemService{
     public String generateKidsItemsCode(){
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM item WHERE item_code LIKE 'KID%' ORDER BY item_code DESC LIMIT 1;");
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM item WHERE item_code LIKE 'KID%' ORDER BY item_code DESC LIMIT 1;"
+            );
             if(resultSet.next()){
                 String string = resultSet.getString(1);
                 String s = string.replaceAll(letter, "");
@@ -158,7 +167,9 @@ public class ItemController implements ItemService{
     public String generateLadiesItemsCode(){
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM item WHERE item_code LIKE 'LAD%' ORDER BY item_code DESC LIMIT 1;");
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM item WHERE item_code LIKE 'LAD%' ORDER BY item_code DESC LIMIT 1;"
+            );
             if(resultSet.next()){
                 String string = resultSet.getString(1);
                 String s = string.replaceAll(letter, "");
@@ -190,7 +201,9 @@ public class ItemController implements ItemService{
 
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM item WHERE item_code LIKE 'MEN%' ORDER BY item_code DESC LIMIT 1;");
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM item WHERE item_code LIKE 'MEN%' ORDER BY item_code DESC LIMIT 1;"
+            );
             if(resultSet.next()){
                 String string = resultSet.getString(1);
                 String s = string.replaceAll(letter, "");
@@ -219,7 +232,9 @@ public class ItemController implements ItemService{
     public String generateToysItemsCode(){
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM item WHERE item_code LIKE 'TOY%' ORDER BY item_code DESC LIMIT 1;");
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM item WHERE item_code LIKE 'TOY%' ORDER BY item_code DESC LIMIT 1;"
+            );
             if(resultSet.next()){
                 String string = resultSet.getString(1);
                 String s = string.replaceAll(letter, "");
@@ -248,7 +263,9 @@ public class ItemController implements ItemService{
     public String generateOtherItemsCode(){
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM item WHERE item_code LIKE 'OTH%' ORDER BY item_code DESC LIMIT 1;");
+            resultSet = statement.executeQuery(
+                    "SELECT * FROM item WHERE item_code LIKE 'OTH%' ORDER BY item_code DESC LIMIT 1;"
+            );
             if(resultSet.next()){
                 String string = resultSet.getString(1);
                 String s = string.replaceAll(letter, "");

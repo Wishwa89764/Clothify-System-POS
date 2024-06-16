@@ -41,3 +41,11 @@ Z
 *src/main/java/edu/icet/pos/model/Item.java,d\a\dabd5f18a9218c8766c4d7f31b9d5a55881bb5a2
 n
 >src/main/java/edu/icet/pos/controller/item/ItemController.java,c\d\cd9bca844b0c0b40e12fe0434f19f442937c9de7
+u
+Esrc/main/java/edu/icet/pos/controller/user/AddUserFormController.java,e\5\e53eec3e092f7bd124a8fc3876a0c7da0a056313
+Z
+*src/main/java/edu/icet/pos/model/User.java,b\0\b02605a1b2d10867efb160c0a9b09b2f54157e1a
+k
+;src/main/java/edu/icet/pos/controller/user/UserService.java,0\8\08026481a70dbd8fafc1d949729a59048d1612da
+n
+>src/main/java/edu/icet/pos/controller/user/UserController.java,6\e\6e4b370dd8d8f7efc075b58829f93bf272014f5a
