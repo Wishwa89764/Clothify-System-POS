@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddItemFromController implements Initializable {
-    ItemService service = new ItemController();
+    ItemService service = ItemController.getInstance();
 
     @FXML
     private JFXComboBox<?> cmbCategory;

@@ -3,6 +3,7 @@ package edu.icet.pos.controller.item;
 import edu.icet.pos.crudUtil.CrudUtil;
 import edu.icet.pos.db.DBConnection;
 import edu.icet.pos.model.Item;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.RequiredArgsConstructor;
 
@@ -14,12 +15,13 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 public class ItemController implements ItemService{
+    private static ItemController instance;
 
     private final Connection connection;
     private final Statement statement;
     String letter="([A-Z])";
 
-    public ItemController(){
+    private ItemController(){
         try {
             connection=DBConnection.getInstance().getConnection();
             statement= connection.createStatement();
@@ -28,15 +30,58 @@ public class ItemController implements ItemService{
         }
     }
 
+    public static ItemController getInstance(){
+        if(instance==null){
+           return instance=new ItemController();
+        }
+        return instance;
+    }
+
 
     @Override
-    public Item searchEmployee(String itemCode) {
+    public Item searchItem(String itemCode) {
+        ResultSet resultSet = null;
+        try {
+            resultSet = resultSet = CrudUtil.execute("SELECT * FROM item WHERE item_code=?",itemCode);
+            while(resultSet.next()) {
+                return new Item(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                );
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         return null;
     }
 
     @Override
     public ObservableList<Item> getAllItems() {
+
         return null;
+    }
+
+    @Override
+    public ObservableList getSelectedItems(String string) {
+        String sql = "SELECT * FROM item WHERE REGEXP_LIKE(item_code,'^"+string+"');";
+        ObservableList list = FXCollections.observableArrayList();
+        try {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                list.add(
+                        new String(
+                                resultSet.getString("item_code")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 
     @Override

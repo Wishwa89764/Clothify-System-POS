@@ -138,7 +138,7 @@ public class AddEmployeeFormController implements Initializable {
                     lblUserID.getText()
             );
             boolean b = EmployeeController.getInstance().addEmployee(employee);
-            System.out.println(b);
+
             if (b) {
                 new Alert(Alert.AlertType.ERROR, "Employee Not Added ! Please ReTry..").show();
             } else {
@@ -235,7 +235,6 @@ public class AddEmployeeFormController implements Initializable {
         imgEmployee.setPreserveRatio(true);
 
         BufferedImage myImage = ImageIO.read(new File(file.getAbsolutePath()));
-        imgPath = "F:\\ICET\\Java\\Java FX\\Final Course Work\\Clothify-System\\src\\main\\resources\\img\\" + cmbEmpID.getPromptText() + ".jpg";
         ImageIO.write(myImage, "jpg", new File("F:\\ICET\\Java\\Java FX\\Final Course Work\\Clothify-System\\src\\main\\resources\\img\\" + cmbEmpID.getPromptText() + ".jpg"));
     }
 
