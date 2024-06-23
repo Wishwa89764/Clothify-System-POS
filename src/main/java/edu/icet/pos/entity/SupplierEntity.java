@@ -1,5 +1,7 @@
-package edu.icet.pos.model;
+package edu.icet.pos.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.Date;
@@ -9,8 +11,10 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Supplier {
-    private String supplierID;
+@Entity(name="supplier")
+public class SupplierEntity {
+    @Id
+    private String id;
     private String firstName;
     private String lastName;
     private String sex;

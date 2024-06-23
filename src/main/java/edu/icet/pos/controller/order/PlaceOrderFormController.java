@@ -1,12 +1,14 @@
 package edu.icet.pos.controller.order;
 
 import com.jfoenix.controls.JFXButton;
+import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.custom.OrderBo;
 import edu.icet.pos.controller.item.ItemController;
 import edu.icet.pos.controller.item.ItemService;
 import edu.icet.pos.dto.tm.OrderItemTable;
-import edu.icet.pos.model.Item;
-import edu.icet.pos.model.Order;
-import javafx.application.Platform;
+import edu.icet.pos.dto.Item;
+import edu.icet.pos.dto.Order;
+import edu.icet.pos.utill.BoType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,17 +23,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 
-public class OrderManagementFormController implements Initializable {
+public class PlaceOrderFormController implements Initializable {
     public Label lblNetPrice;
     public TableView tblItems;
     public Label lblUnitPrice;
@@ -71,13 +71,14 @@ public class OrderManagementFormController implements Initializable {
 
     @FXML
     private TextField txtQty;
+    private final OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
 
     ObservableList<OrderItemTable> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colItemCode.setCellValueFactory(
-                new PropertyValueFactory<>("itemCode")
+                new PropertyValueFactory<>("id")
         );
         colDescription.setCellValueFactory(
                 new PropertyValueFactory<>("itemName")
@@ -98,8 +99,8 @@ public class OrderManagementFormController implements Initializable {
     }
 
     private void loadGenerateID() {
-        String s = OrderController.getInstance().generateOrderID();
-        lblOrderID.setText(s);
+        String newOrderID = orderBo.getNewOrderID();
+        lblOrderID.setText(newOrderID);
     }
 
     @FXML
@@ -136,7 +137,7 @@ public class OrderManagementFormController implements Initializable {
                     setCurrentTime(),
                     "000001"
             );
-            boolean b = OrderController.getInstance().placeNewOrder(order);
+            boolean b = orderBo.saveNewOrder(order);
             if(i==1){
                 if (b) {
                     new Alert(Alert.AlertType.ERROR, "Employee Not Added ! Please ReTry..").show();
@@ -383,7 +384,7 @@ public class OrderManagementFormController implements Initializable {
     }
     private void reloadForm(){
         try {
-            Parent fxmlLoader = new FXMLLoader(getClass().getResource("/view/order-management-form.fxml")).load();
+            Parent fxmlLoader = new FXMLLoader(getClass().getResource("/view/place-order-form.fxml")).load();
             Stage stage = new Stage();
             stage.setScene(new Scene(fxmlLoader));
             stage.show();

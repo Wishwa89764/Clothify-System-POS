@@ -1,4 +1,4 @@
-package edu.icet.pos.model;
+package edu.icet.pos.dto;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Employee {
-    private String employeeId;
+    private String id;
     private String firstName;
     private String lastName;
     private Date dob;

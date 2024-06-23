@@ -1,30 +1,34 @@
 
-	java:S112–"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ä©òÅ€2J$7a78c809-2030-452c-a93f-9b782834a273
+	java:S112¤"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Êãƒ­„2J$4e21d261-13ba-4c90-ab85-cb3ad23e9353
 r
-java:S3740"/Provide the parametrized type for this generic.(ë–ù8È©òÅ€2J$667949e0-2f4c-481a-916c-7280086090a1
+java:S3740$"/Provide the parametrized type for this generic.(ë–ù8Ïãƒ­„2J$24319c54-fadb-4150-8594-95e5c57d21d9
 s
-java:S3740ò"/Provide the parametrized type for this generic.(Ÿœ•¨8È©òÅ€2J$49931b07-983c-486b-a36f-e06a5d03d11e
+java:S3740ı"/Provide the parametrized type for this generic.(Ÿœ•¨8Ñãƒ­„2J$f13f7dfe-51f5-4908-a034-fd1145574959
 x
-java:S3740ü"/Provide the parametrized type for this generic.(’´óÁøÿÿÿÿ8É©òÅ€2J$0598aec2-7fb1-4301-a9e5-7378770d930d
+java:S3740‡"/Provide the parametrized type for this generic.(’´óÁøÿÿÿÿ8Ñãƒ­„2J$f375a385-9d91-4af4-b77d-1a43270b1eb3
 x
-java:S3740Œ"/Provide the parametrized type for this generic.(…É¸úÿÿÿÿ8É©òÅ€2J$6b4c3381-066e-4185-863d-3a2ede604407
+java:S3740–"/Provide the parametrized type for this generic.(æ™¹Íûÿÿÿÿ8Òãƒ­„2J$c90a5ea2-c54b-405e-af19-273bd1bd83bd
 •
-java:S1104"RMake cmbSex a static final constant or non-public and provide accessors if needed.(ë–ù8Ò©òÅ€2J$3ab0b9a8-422b-4cc1-a399-d9538c8c9df7
+java:S1104$"RMake cmbSex a static final constant or non-public and provide accessors if needed.(ë–ù8İãƒ­„2J$cfaad33e-ee76-4ba8-8892-f5c5dd0358de
 —
-java:S1104 "UMake txtSalary a static final constant or non-public and provide accessors if needed.(‹À8Ò©òÅ€2J$864f853d-4e10-4727-87ea-764636574a38
+java:S1104%"UMake txtSalary a static final constant or non-public and provide accessors if needed.(‹À8Şãƒ­„2J$4d42a062-0e2d-41cc-97a9-f581cbaa7005
+€
+java:S2589Ò"7Remove this expression which always evaluates to "true"(Å·´—ÿÿÿÿÿ8‘ëƒ­„2J$e47295e4-734d-4885-a5b2-b3f9f03e0f5f
 Å
-java:S1186´"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ùÔ´•8¶¬òÅ€2J$a334593b-172f-4872-a7c0-2a9c79259d96
+java:S1186Â"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ùÔ´•8çëƒ­„2J$b70c56e0-67be-485d-873a-3c5355880e09
 Å
-java:S1186¹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öÿçõ8·¬òÅ€2J$a2be8e65-e985-4f48-ad9e-7bef7f6a085a
+java:S1186Ç"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öÿçõ8èëƒ­„2J$b9c4a1d3-7056-4c17-8514-7f9583d282fd
 i
-java:S2129ó" Remove this "String" constructor(±ø±üùÿÿÿÿ8û­òÅ€2J$7e168e9b-511c-4f39-b5e5-4e36f77205ef
+java:S2129ş" Remove this "String" constructor(±ø±üùÿÿÿÿ8—òƒ­„2J$1b0eace7-4e9b-4159-9031-a569d613e5e9
 c
-java:S2129ô" Remove this "String" constructor(îÒª8ş­òÅ€2J$a3b73c96-ebc8-412c-a668-312a23e9d094
+java:S2129ÿ" Remove this "String" constructor(îÒª8šòƒ­„2J$56708a5c-effc-4bd1-a0e9-9f23a4400ecb
 i
-java:S2129ı" Remove this "String" constructor(á¾È©şÿÿÿÿ8„®òÅ€2J$00a602ca-b356-4740-aece-758aff5b35e8
+java:S2129ˆ" Remove this "String" constructor(á¾È©şÿÿÿÿ8¤òƒ­„2J$b311d245-731a-4900-8e2b-9d74b6bb8453
 i
-java:S2129ş" Remove this "String" constructor(¨‡è‚úÿÿÿÿ8†®òÅ€2J$6c56021d-e74f-4286-9fff-5819525b676f
+java:S2129‰" Remove this "String" constructor(¨‡è‚úÿÿÿÿ8¦òƒ­„2J$176cc542-8e59-4387-8819-c764063b316d
 v
-java:S1172‰"2Remove this unused method parameter "actionEvent".(¾êÉè8®òÅ€2J$4435533e-79c8-412b-abbd-7025a5da5874
-i
-java:S2129" Remove this "String" constructor(Œå‘üÿÿÿÿ8”®òÅ€2J$8bb48af1-0f32-4244-ab35-fef20d8392c9
+java:S1172”"2Remove this unused method parameter "actionEvent".(¾êÉè8§óƒ­„2J$29397d75-7e0d-4b55-a743-8259b6730dd1
+w
+java:S1128"4Remove this unused import 'edu.icet.pos.bo.SuperBo'.(®üÕç8«ìô¯„2J$1da9ec19-20c2-42ef-836e-7d287978d095
+
+java:S1128	"GRemove this unused import 'edu.icet.pos.bo.custom.impl.EmployeeBoImpl'.(œ®¦şÿÿÿÿ8¬ìô¯„2J$552ccecc-8709-45b1-b0b8-edaae4b4c0e1

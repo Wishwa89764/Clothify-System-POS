@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.login.LoginFormController">
+   <children>
+      <HBox layoutX="263.0" layoutY="138.0" prefHeight="38.0" prefWidth="307.0">
+         <children>
+            <FontAwesomeIconView glyphName="USER" size="25" wrappingWidth="27.0" />
+            <JFXTextField fx:id="txtUserID" alignment="CENTER" onKeyPressed="#txtUserIDOnKeyPressed" onKeyTyped="#txtUserIDOnKeyType" prefHeight="25.0" prefWidth="251.0" promptText="User Email" />
+            <FontAwesomeIconView fx:id="fontIconUserID" fill="#05a41f" glyphName="CHECK" size="20">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+         </children>
+      </HBox>
+      <HBox fx:id="hBoxShowPassword" layoutX="263.0" layoutY="203.0" prefHeight="38.0" prefWidth="320.0" visible="false">
+         <children>
+            <FontAwesomeIconView glyphName="LOCK" size="25" wrappingWidth="27.0" />
+            <JFXTextField fx:id="txtPasswordShow" alignment="CENTER" onKeyPressed="#txtUserIDOnKeyPressed" onKeyTyped="#txtUserIDOnKeyType" prefHeight="25.0" prefWidth="253.0" promptText="PASSWORD" />
+            <FontAwesomeIconView fill="#05619a" glyphName="EYE" onMouseClicked="#fontIconEyeOnMouseClicked" size="20">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+         </children>
+      </HBox>
+      <HBox fx:id="hBoxHidePassword" layoutX="263.0" layoutY="203.0" prefHeight="38.0" prefWidth="320.0">
+         <children>
+            <FontAwesomeIconView glyphName="LOCK" size="25" wrappingWidth="27.0" />
+            <JFXPasswordField fx:id="txtPassword" alignment="CENTER" onKeyPressed="#txtPasswordOnKeyPressed" prefHeight="25.0" prefWidth="253.0" promptText="PASSWORD" />
+            <FontAwesomeIconView fill="#05619a" glyphName="EYE_SLASH" onMouseClicked="#fontIconEyeSlashOnMouseClicked" size="20">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+         </children>
+      </HBox>
+      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="303.0" layoutY="290.0" onAction="#btnLoginOnAction" prefHeight="31.0" prefWidth="219.0" ripplerFill="#0768fa" style="-fx-background-color: #1e3799;" text="LOGIN" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="400.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/login.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnClose" layoutX="568.0" onAction="#btnCloseOnAction" prefHeight="20.0" prefWidth="20.0" text="X" textFill="#0a0a0a">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="355.0" layoutY="38.0" text="Login Form">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="415.0" layoutY="237.0" onAction="#btnFogotPasswordOnAction" text="Forgot Password...?" textFill="#096cab" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <HBox fx:id="hBoxPasswordWarning" layoutX="297.0" layoutY="88.0" prefHeight="34.0" prefWidth="253.0" visible="false">
+         <children>
+            <FontAwesomeIconView fill="#ffd400" glyphName="WARNING" size="25">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="203.0" text="Password Not Match" textFill="#e40b0b">
+               <font>
+                  <Font name="Calibri Bold" size="23.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

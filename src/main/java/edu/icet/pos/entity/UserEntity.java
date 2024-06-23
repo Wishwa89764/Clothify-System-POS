@@ -1,5 +1,7 @@
-package edu.icet.pos.model;
+package edu.icet.pos.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -7,8 +9,10 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-    private long userID;
+@Entity(name="user")
+public class UserEntity {
+    @Id
+    private String id;
     private String userName;
     private String userPassword;
     private String empID;

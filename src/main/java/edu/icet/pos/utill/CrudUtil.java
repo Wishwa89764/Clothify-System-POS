@@ -1,4 +1,4 @@
-package edu.icet.pos.crudUtil;
+package edu.icet.pos.utill;
 
 import edu.icet.pos.db.DBConnection;
 

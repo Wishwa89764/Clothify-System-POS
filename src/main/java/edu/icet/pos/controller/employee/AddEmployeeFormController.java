@@ -3,7 +3,12 @@ package edu.icet.pos.controller.employee;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.icet.pos.model.Employee;
+import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.SuperBo;
+import edu.icet.pos.bo.custom.EmployeeBo;
+import edu.icet.pos.bo.custom.impl.EmployeeBoImpl;
+import edu.icet.pos.dto.Employee;
+import edu.icet.pos.utill.BoType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,6 +89,16 @@ public class AddEmployeeFormController implements Initializable {
     @FXML
     private JFXTextField txtRelationShip;
 
+    private EmployeeBo employeeBo = BoFactory.getInstance().getBo(BoType.EMPLOYEE);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cmbEmpID.setDisable(true);
+        setCurrentDateandTime();
+        loadInitialValues();
+
+    }
+
     private void setCurrentDateandTime() {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -137,9 +152,8 @@ public class AddEmployeeFormController implements Initializable {
                     imgPath,
                     lblUserID.getText()
             );
-            boolean b = EmployeeController.getInstance().addEmployee(employee);
-
-            if (b) {
+            boolean b = employeeBo.saveEmployee(employee);
+            if (!b) {
                 new Alert(Alert.AlertType.ERROR, "Employee Not Added ! Please ReTry..").show();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "New Employee Added !").show();
@@ -188,7 +202,11 @@ public class AddEmployeeFormController implements Initializable {
 
     @FXML
     void cmbEmpIDOnAction(ActionEvent event) {
-        Employee employee = EmployeeController.getInstance().searchEmployee(cmbEmpID.getValue().toString());
+        Employee employee = employeeBo.getSelectedEmployee(cmbEmpID.getValue().toString());
+        Image image = new Image("img/User.jpeg");
+        if(!employee.getImgUrl().isEmpty()) {
+            image = new Image(employee.getImgUrl());
+        }
         if (employee != null) {
             txtFirstName.setText(employee.getFirstName());
             txtLastName.setText(employee.getLastName());
@@ -210,18 +228,11 @@ public class AddEmployeeFormController implements Initializable {
             txtEmgAddress1.setText(employee.getEmgContactAddress1());
             txtEmgAddress2.setText(employee.getEmgContactAddress2());
             txtEmgAddress3.setText(employee.getEmgContactAddress3());
-            Image image = new Image(employee.getImgUrl());
             imgEmployee.setImage(image);
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cmbEmpID.setDisable(true);
-        setCurrentDateandTime();
-        loadInitialValues();
 
-    }
 
     private void setImage() throws IOException {
         Stage stage = new Stage();
@@ -257,18 +268,14 @@ public class AddEmployeeFormController implements Initializable {
     }
 
     private void loadEmpID() {
-        String newEmployeeID = EmployeeController.getInstance().generateEmpID();
+        String newEmployeeID = employeeBo.getNewEmployeeID();
 
         cmbEmpID.setPromptText(String.valueOf(newEmployeeID));
     }
 
     public void btnReloadOnAction(ActionEvent actionEvent) {
         if (cmbEmpID.isDisable()) {
-            ObservableList<Employee> allEmployees = EmployeeController.getInstance().getAllEmployees();
-            ObservableList allEmployeeID = FXCollections.observableArrayList();
-            for (Employee allEmployee : allEmployees) {
-                allEmployeeID.add(new String(allEmployee.getEmployeeId()));
-            }
+            ObservableList allEmployeeID = employeeBo.getAllEmployeeID();
             cmbEmpID.setItems(allEmployeeID);
             cmbEmpID.setDisable(true);
         }

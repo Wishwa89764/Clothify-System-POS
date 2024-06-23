@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="617.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.order.OrderManagementFormController">
+<AnchorPane prefHeight="617.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.order.PlaceOrderFormController">
    <children>
       <Label layoutX="38.0" layoutY="18.0" text="Order ID :" textFill="#1b0202">
          <font>
@@ -23,8 +23,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070707" height="46.0" layoutX="545.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="233.0" />
-      <Label layoutX="473.0" layoutY="11.0" prefHeight="46.0" prefWidth="92.0" text="Total :">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070707" height="46.0" layoutX="545.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="233.0" AnchorPane.rightAnchor="36.0" />
+      <Label layoutX="473.0" layoutY="11.0" prefHeight="46.0" prefWidth="71.0" text="Total :" AnchorPane.rightAnchor="270.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -39,7 +39,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtDiscount" layoutX="540.0" layoutY="143.0" onKeyPressed="#txtDiscountOnKeyPressed" prefHeight="30.0" prefWidth="92.0" promptText="Discount %">
+      <TextField fx:id="txtDiscount" layoutX="540.0" layoutY="143.0" onKeyPressed="#txtDiscountOnKeyPressed" prefHeight="30.0" prefWidth="92.0" promptText="Discount %" AnchorPane.rightAnchor="182.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -49,19 +49,19 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="lblTotal" alignment="CENTER_RIGHT" layoutX="559.0" layoutY="9.0" prefHeight="46.0" prefWidth="218.0" text="125000.00" textFill="#eae8ee">
+      <Label fx:id="lblTotal" alignment="CENTER_RIGHT" layoutX="559.0" layoutY="9.0" prefHeight="46.0" prefWidth="218.0" text="125000.00" textFill="#eae8ee" AnchorPane.rightAnchor="37.0">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Label fx:id="lblNetPrice" layoutX="540.0" layoutY="187.0" prefHeight="30.0" prefWidth="131.0" text="2500.00" textFill="#790202">
+      <Label fx:id="lblNetPrice" layoutX="540.0" layoutY="187.0" prefHeight="30.0" prefWidth="131.0" text="2500.00" textFill="#790202" AnchorPane.rightAnchor="143.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Separator layoutX="22.0" layoutY="286.0" prefHeight="0.0" prefWidth="792.0" />
-      <Separator layoutY="73.0" prefHeight="0.0" prefWidth="792.0" />
-      <TableView fx:id="tblItems" layoutX="10.0" layoutY="295.0" onMouseClicked="#tblItemsOnMouseClicked" prefHeight="254.0" prefWidth="767.0">
+      <Separator layoutX="22.0" layoutY="286.0" prefHeight="0.0" prefWidth="792.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutY="73.0" prefHeight="3.0" prefWidth="814.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <TableView fx:id="tblItems" layoutX="10.0" layoutY="295.0" onMouseClicked="#tblItemsOnMouseClicked" prefHeight="254.0" prefWidth="767.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="37.0">
         <columns>
           <TableColumn fx:id="colItemCode" prefWidth="112.0" text="Item Code" />
           <TableColumn fx:id="colDescription" prefWidth="225.0" text="Description" />
@@ -71,7 +71,7 @@
             <TableColumn fx:id="colNetPrice" prefWidth="127.0" text="Net Price" />
         </columns>
       </TableView>
-      <JFXButton layoutX="588.0" layoutY="566.0" onAction="#btnNextOnAction" prefHeight="31.0" prefWidth="184.0" style="-fx-background-color: #0984e3;" text="Next" textFill="#fcf5f5">
+      <JFXButton layoutX="588.0" layoutY="566.0" onAction="#btnNextOnAction" prefHeight="31.0" prefWidth="184.0" style="-fx-background-color: #0984e3;" text="Next" textFill="#fcf5f5" AnchorPane.rightAnchor="42.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -86,22 +86,22 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <Label fx:id="lblGrossPrice" layoutX="540.0" layoutY="102.0" prefHeight="30.0" prefWidth="131.0" text="2500.00" textFill="#790202">
+      <Label fx:id="lblGrossPrice" layoutX="540.0" layoutY="102.0" prefHeight="30.0" prefWidth="131.0" text="2500.00" textFill="#790202" AnchorPane.rightAnchor="143.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="465.0" layoutY="109.0" text="Gross Price :" textFill="#7c7a7a">
+      <Label layoutX="465.0" layoutY="109.0" text="Gross Price :" textFill="#7c7a7a" AnchorPane.rightAnchor="273.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="472.0" layoutY="147.0" text="Discount :" textFill="#7c7a7a">
+      <Label layoutX="472.0" layoutY="147.0" text="Discount :" textFill="#7c7a7a" AnchorPane.rightAnchor="273.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="472.0" layoutY="191.0" text="Net Price :" textFill="#7c7a7a">
+      <Label layoutX="472.0" layoutY="191.0" text="Net Price :" textFill="#7c7a7a" AnchorPane.rightAnchor="273.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -121,8 +121,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Separator layoutX="427.0" layoutY="79.0" orientation="VERTICAL" prefHeight="200.0" />
-      <Label fx:id="lblDiscount" layoutX="639.0" layoutY="143.0" prefHeight="30.0" prefWidth="104.0" text="2500.00" textFill="#790202">
+      <Separator layoutX="427.0" layoutY="79.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label fx:id="lblDiscount" layoutX="639.0" layoutY="143.0" prefHeight="30.0" prefWidth="104.0" text="2500.00" textFill="#790202" AnchorPane.rightAnchor="70.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

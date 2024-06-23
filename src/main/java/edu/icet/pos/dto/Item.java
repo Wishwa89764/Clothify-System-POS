@@ -1,4 +1,4 @@
-package edu.icet.pos.model;
+package edu.icet.pos.dto;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {
-    private String itemCode;
+    private String id;
     private String itemCategory;
     private String itemName;
     private String description;

@@ -3,9 +3,11 @@ package edu.icet.pos.controller.supplier;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.icet.pos.controller.employee.EmployeeController;
-import edu.icet.pos.model.Employee;
-import edu.icet.pos.model.Supplier;
+import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.custom.SupplierBo;
+import edu.icet.pos.dto.Employee;
+import edu.icet.pos.dto.Supplier;
+import edu.icet.pos.utill.BoType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,8 +20,6 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -106,6 +106,8 @@ public class SupplierManagementFormController implements Initializable {
     @FXML
     private JFXTextField txtTelNo;
 
+    private final SupplierBo supplierBo = BoFactory.getInstance().getBo(BoType.SUPPLIER);
+
     @FXML
     void btnAddNewEmpOnAction(ActionEvent event) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -137,12 +139,12 @@ public class SupplierManagementFormController implements Initializable {
                     lblUserID.getText()
             );
 
-            boolean b = SupplierController.getInstance().addNewSupplier(supplier);
+            boolean b = supplierBo.saveNewSupplier(supplier);
             System.out.println(b);
             if (b) {
-                new Alert(Alert.AlertType.ERROR, "Employee Not Added ! Please ReTry..").show();
+                new Alert(Alert.AlertType.ERROR, "Supplier Not Added ! Please ReTry..").show();
             } else {
-                new Alert(Alert.AlertType.CONFIRMATION, "New Employee Added !").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "New Supplier Added !").show();
                 clearText();
                 loadNewSupplierID();
             }
@@ -160,11 +162,7 @@ public class SupplierManagementFormController implements Initializable {
     @FXML
     void btnReloadOnAction(ActionEvent event) {
         if (cmbSupplierID.isDisable()) {
-            ObservableList<Supplier> allSupplier = SupplierController.getInstance().getAllSuppliers();
-            ObservableList allSupplierID = FXCollections.observableArrayList();
-            for (Supplier allSuppliers : allSupplier) {
-                allSupplierID.add(new String(allSuppliers.getSupplierID()));
-            }
+            ObservableList allSupplierID = supplierBo.getAllSupplierID();
             cmbSupplierID.setItems(allSupplierID);
             cmbSupplierID.setDisable(true);
         }
@@ -180,7 +178,7 @@ public class SupplierManagementFormController implements Initializable {
 
     @FXML
     void cmbSupplierIDOnAction(ActionEvent event) {
-        Supplier supplier = SupplierController.getInstance().searchSupplier(cmbSupplierID.getValue().toString());
+        Supplier supplier = supplierBo.getSelectedSupplier(cmbSupplierID.getValue().toString());
         if(supplier!=null) {
             txtFirstName.setText(supplier.getFirstName());
             txtLastName.setText(supplier.getLastName());
@@ -222,7 +220,7 @@ public class SupplierManagementFormController implements Initializable {
     }
 
     private void loadNewSupplierID() {
-        String id = SupplierController.getInstance().generateSupplierID();
+        String id = supplierBo.getNewSupplierID();
         cmbSupplierID.setPromptText(id);
     }
 

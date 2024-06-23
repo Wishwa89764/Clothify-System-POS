@@ -1,8 +1,8 @@
 package edu.icet.pos.controller.item;
 
-import edu.icet.pos.crudUtil.CrudUtil;
+import edu.icet.pos.utill.CrudUtil;
 import edu.icet.pos.db.DBConnection;
-import edu.icet.pos.model.Item;
+import edu.icet.pos.dto.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.RequiredArgsConstructor;
@@ -90,7 +90,7 @@ public class ItemController implements ItemService{
         try {
             CrudUtil.execute(
                     sql,
-                    item.getItemCode(),
+                    item.getId(),
                     item.getItemCategory(),
                     item.getItemName(),
                     item.getDescription(),

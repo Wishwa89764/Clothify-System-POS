@@ -2,16 +2,19 @@ package edu.icet.pos.controller.item;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.icet.pos.model.Item;
+import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.custom.ItemBo;
+import edu.icet.pos.bo.custom.impl.ItemBoImpl;
+import edu.icet.pos.dto.Item;
+import edu.icet.pos.utill.BoType;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import lombok.RequiredArgsConstructor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,17 +39,18 @@ public class AddItemFromController implements Initializable {
 
     @FXML
     private JFXTextField txtItemName;
-
-
+    private final ItemBo itemBo = BoFactory.getInstance().getBo(BoType.ITEM);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         loadInitialValues();
     }
 
     @FXML
     void btnAddItemOnAction(ActionEvent event) {
-        Item myIMage = new Item(
+        Item item = new Item(
                 lblItemID.getText(),
                 cmbCategory.getValue().toString(),
                 txtItemName.getText(),
@@ -54,9 +58,22 @@ public class AddItemFromController implements Initializable {
                 "My IMage"
         );
 
-        boolean b = service.AddItem(myIMage);
-        System.out.println(b);
+        boolean b = itemBo.saveNewItem(item);
+        if(b){
+            new Alert(Alert.AlertType.INFORMATION,"New Item Added !").show();
+            clearText();
+            loadInitialValues();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Item Not Added ! Please ReTry..").show();
+        }
 
+    }
+
+    private void clearText() {
+        lblItemID.setText("");
+        txtItemName.setText("");
+        txtItemDescription.setText("");
+        txtItemName.requestFocus();
     }
 
     @FXML
@@ -71,10 +88,8 @@ public class AddItemFromController implements Initializable {
 
     @FXML
     void cmbCategoryOnAction(ActionEvent event) {
-       String id = cmbCategory.getValue().toString();
-        System.out.println(id);
-        String itemCode = service.generateItemCode(id);
-        lblItemID.setText(itemCode);
+       String category = cmbCategory.getValue().toString();
+
     }
 
     private void loadInitialValues(){
@@ -86,7 +101,12 @@ public class AddItemFromController implements Initializable {
         category.add(new String("OTHER"));
 
         cmbCategory.setItems(category);
+        generateItemID();
+    }
 
+    private void generateItemID() {
+        String newItemID = itemBo.getNewItemID();
+        lblItemID.setText(newItemID);
     }
 
 

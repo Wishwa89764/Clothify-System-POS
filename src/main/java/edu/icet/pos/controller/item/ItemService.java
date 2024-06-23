@@ -1,6 +1,6 @@
 package edu.icet.pos.controller.item;
 
-import edu.icet.pos.model.Item;
+import edu.icet.pos.dto.Item;
 import javafx.collections.ObservableList;
 
 public interface ItemService {

@@ -3,10 +3,13 @@ package edu.icet.pos.controller.user;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import edu.icet.pos.controller.employee.EmployeeController;
-import edu.icet.pos.controller.employee.EmployeeService;
-import edu.icet.pos.model.Employee;
-import edu.icet.pos.model.User;
+import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.custom.EmployeeBo;
+import edu.icet.pos.bo.custom.ItemBo;
+import edu.icet.pos.bo.custom.UserBo;
+import edu.icet.pos.dto.Employee;
+import edu.icet.pos.dto.User;
+import edu.icet.pos.utill.BoType;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,12 +20,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 
 public class AddUserFormController implements Initializable {
-    UserService userService=new UserController();
 
     @FXML
     private JFXComboBox<?> cmbEmployeeID;
@@ -44,6 +45,10 @@ public class AddUserFormController implements Initializable {
 
     @FXML
     private JFXPasswordField txtUserPassword;
+
+    private final UserBo userBo = BoFactory.getInstance().getBo(BoType.USER);
+    private final EmployeeBo employeeBo = BoFactory.getInstance().getBo(BoType.EMPLOYEE);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList role = FXCollections.observableArrayList();
@@ -57,7 +62,7 @@ public class AddUserFormController implements Initializable {
 
     @FXML
     void btnAddNewUserOnAction(ActionEvent event) {
-        boolean b = userService.addNewUser(
+        boolean b = userBo.saveNewUser(
                 new User(
                         Long.parseLong(lblUserID.getText()),
                         txtUserName.getText(),
@@ -68,33 +73,23 @@ public class AddUserFormController implements Initializable {
         );
 
         if (b) {
-            new Alert(Alert.AlertType.CONFIRMATION, "New Employee Added !").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "New User Added !").show();
             clearText();
             loadNewUserID();
         } else {
-            new Alert(Alert.AlertType.ERROR, "Employee Not Added ! Please ReTry..").show();
+            new Alert(Alert.AlertType.ERROR, "User Not Added ! Please ReTry..").show();
         }
 
     }
 
     private void loadNewUserID() {
-        lblUserID.setText(userService.generateUserID());
+
+        lblUserID.setText(userBo.getNewUserID());
     }
 
     private void loadEmployeeID(){
-        EmployeeService employeeService = EmployeeController.getInstance();
-        ObservableList<Employee> allEmployees = employeeService.getAllEmployees();
-        ObservableList employeeID = FXCollections.observableArrayList();
-
-
-        for(Employee employees : allEmployees){
-            employeeID.add(
-            new String (employees.getEmployeeId())
-            );
-        }
-
-
-        cmbEmployeeID.setItems(employeeID);
+        ObservableList allEmployeeID = employeeBo.getAllEmployeeID();
+        cmbEmployeeID.setItems(allEmployeeID);
 
     }
 
@@ -115,8 +110,7 @@ public class AddUserFormController implements Initializable {
 
     @FXML
     void cmbEmployeeIDOnAction(ActionEvent event) {
-        EmployeeService employeeService=EmployeeController.getInstance();
-        Employee employee = employeeService.searchEmployee(cmbEmployeeID.getValue().toString());
+        Employee employee = employeeBo.getSelectedEmployee(cmbEmployeeID.getValue().toString());
         lblEmployeeName.setText(employee.getFirstName()+" "+employee.getLastName());
 
     }
