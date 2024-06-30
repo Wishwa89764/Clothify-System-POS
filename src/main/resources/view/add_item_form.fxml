@@ -5,13 +5,14 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="575.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.item.AddItemFromController">
+<AnchorPane prefHeight="664.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.item.AddItemFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192a56" height="48.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="868.0" />
       <Label alignment="CENTER" layoutX="-2.0" layoutY="-3.0" prefHeight="51.0" prefWidth="868.0" text="Add New Items " textFill="#f8f8f8">
@@ -45,22 +46,33 @@
       </Label>
       <JFXTextField fx:id="txtItemName" layoutX="62.0" layoutY="197.0" prefHeight="25.0" prefWidth="305.0" promptText="Item Name" />
       <JFXTextField fx:id="txtItemDescription" layoutX="62.0" layoutY="274.0" prefHeight="25.0" prefWidth="305.0" promptText="Description" />
-      <TextArea fx:id="imgItem" layoutX="509.0" layoutY="107.0" prefHeight="427.0" prefWidth="320.0" />
+      <JFXTextField fx:id="txtSupplier" layoutX="62.0" layoutY="340.0" prefHeight="25.0" prefWidth="305.0" promptText="Supplier " />
+      <JFXTextField fx:id="txtItemCost" layoutX="62.0" layoutY="408.0" prefHeight="25.0" prefWidth="305.0" promptText="Cost" />
+      <JFXTextField fx:id="txtItemSellingPrice" layoutX="62.0" layoutY="473.0" prefHeight="25.0" prefWidth="305.0" promptText="Selling Price" />
       <Separator layoutX="437.0" layoutY="158.0" orientation="VERTICAL" prefHeight="200.0" />
-      <JFXButton buttonType="RAISED" layoutX="125.0" layoutY="343.0" onAction="#btnUploadImageOnAction" prefHeight="48.0" prefWidth="179.0" style="-fx-background-color: #222f3e;" text="Upload Image" textFill="#84facc">
+      <JFXButton buttonType="RAISED" layoutX="569.0" layoutY="478.0" onAction="#btnUploadImageOnAction" prefHeight="48.0" prefWidth="179.0" style="-fx-background-color: #222f3e;" text="Upload Image" textFill="#84facc">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="298.0" layoutY="487.0" onAction="#btnAddItemOnAction" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #273c75;" text="Add Item" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="299.0" layoutY="591.0" onAction="#btnAddItemOnAction" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #273c75;" text="Add Item" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="46.0" layoutY="487.0" onAction="#btnCloseOnActiion" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #c0392b;" text="Close" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="40.0" layoutY="591.0" onAction="#btnCloseOnActiion" prefHeight="48.0" prefWidth="130.0" style="-fx-background-color: #c0392b;" text="Close" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
+      <VBox layoutX="497.0" layoutY="119.0" prefHeight="334.0" prefWidth="334.0">
+         <children>
+            <ImageView fx:id="imgItem" fitHeight="344.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

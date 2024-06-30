@@ -15,18 +15,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddItemFromController implements Initializable {
-    ItemService service = ItemController.getInstance();
+    public ImageView imgItem;
+    public JFXTextField txtSupplier;
+    public JFXTextField txtItemCost;
+    public JFXTextField txtItemSellingPrice;
 
     @FXML
     private JFXComboBox<?> cmbCategory;
-
-    @FXML
-    private TextArea imgItem;
 
     @FXML
     private Label lblItemID;
@@ -44,7 +52,6 @@ public class AddItemFromController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         loadInitialValues();
     }
 
@@ -55,16 +62,19 @@ public class AddItemFromController implements Initializable {
                 cmbCategory.getValue().toString(),
                 txtItemName.getText(),
                 txtItemDescription.getText(),
-                "My IMage"
+                txtSupplier.getText(),
+                Double.parseDouble(txtItemCost.getText()),
+                Double.parseDouble(txtItemSellingPrice.getText()),
+                imgItem.getImage().getUrl()
         );
 
         boolean b = itemBo.saveNewItem(item);
-        if(b){
-            new Alert(Alert.AlertType.INFORMATION,"New Item Added !").show();
+        if (b) {
+            new Alert(Alert.AlertType.INFORMATION, "New Item Added !").show();
             clearText();
             loadInitialValues();
-        }else{
-            new Alert(Alert.AlertType.ERROR,"Item Not Added ! Please ReTry..").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Item Not Added ! Please ReTry..").show();
         }
 
     }
@@ -73,6 +83,9 @@ public class AddItemFromController implements Initializable {
         lblItemID.setText("");
         txtItemName.setText("");
         txtItemDescription.setText("");
+        txtSupplier.setText("");
+        txtItemCost.setText("");
+        txtItemSellingPrice.setText("");
         txtItemName.requestFocus();
     }
 
@@ -83,16 +96,39 @@ public class AddItemFromController implements Initializable {
 
     @FXML
     void btnUploadImageOnAction(ActionEvent event) {
+        try {
+            Stage stage = new Stage();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select Image");
+            File file = fileChooser.showOpenDialog(stage);
+            Image image = new Image(file.getAbsolutePath());
+            imgItem.setImage(image);
+            imgItem.setFitWidth(334);
+            imgItem.setFitHeight(334);
+            imgItem.setPreserveRatio(true);
+
+            BufferedImage myImage = ImageIO.read(new File(file.getAbsolutePath()));
+            ImageIO.write(myImage,
+                    "jpg",
+                    new File(
+                            "F:\\ICET\\Java\\Java FX\\Final Course Work\\Clothify-System\\src\\main\\resources\\img\\itemImage\\" + lblItemID.getText() + ".jpg")
+            );
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
     @FXML
     void cmbCategoryOnAction(ActionEvent event) {
-       String category = cmbCategory.getValue().toString();
+
 
     }
 
-    private void loadInitialValues(){
+    private void loadInitialValues() {
         ObservableList category = FXCollections.observableArrayList();
         category.add(new String("KIDS Wear"));
         category.add(new String("MENS Wear"));

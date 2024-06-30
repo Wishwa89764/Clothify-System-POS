@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.icet.pos.bo.BoFactory;
 import edu.icet.pos.bo.custom.UserBo;
+import edu.icet.pos.controller.mainForm.MainFormController;
 import edu.icet.pos.dto.User;
 import edu.icet.pos.utill.BoType;
 import javafx.application.Platform;
@@ -21,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,6 +38,7 @@ public class LoginFormController implements Initializable {
     public JFXTextField txtPasswordShow;
     public HBox hBoxShowPassword;
     public HBox hBoxHidePassword;
+    public JFXButton btnFogotPassword;
     @FXML
     private JFXButton btnLogin;
 
@@ -44,7 +47,40 @@ public class LoginFormController implements Initializable {
 
     @FXML
     private JFXTextField txtUserID;
+    public static String userID;
     private final UserBo userBo = BoFactory.getInstance().getBo(BoType.USER);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(userBo.getRecordsCount()==0){
+            txtUserID.setDisable(true);
+            txtPassword.setDisable(true);
+            btnFogotPassword.setVisible(false);
+            btnLogin.setText("SignUp");
+        }
+        txtPassword.textProperty().bindBidirectional(txtPasswordShow.textProperty());
+        fontIconUserID.setVisible(false);
+    }
+
+    private void loadUserForm(){
+        try {
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader
+                    .load(Objects.requireNonNull(getClass()
+                            .getResource("/view/add-user-form.fxml"))
+                    )
+            ));
+            stage.setTitle("Add New User");
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.getIcons().add(new Image("img/User.jpeg"));
+            stage.show();
+            ((Stage) btnClose.getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
@@ -53,32 +89,34 @@ public class LoginFormController implements Initializable {
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {
+        if(btnLogin.getText().equals("SignUp")){
+            loadUserForm();
+        }
         if(isValidUserID()) {
-            try {
-                Stage stage = new Stage();
-                stage.setScene(new Scene(FXMLLoader
-                        .load(Objects.requireNonNull(getClass()
-                                .getResource("/view/main-form.fxml"))
-                        )
-                ));
-                stage.setTitle("Clothify System");
-                stage.setMaximized(true);
-                stage.getIcons().add(new Image("img/logo.jpg"));
-                stage.show();
-                ((Stage) btnClose.getScene().getWindow()).close();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            userID = txtUserID.getText();
+            loadMainForm();
         }else {
             hBoxPasswordWarning.setVisible(true);
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtPassword.textProperty().bindBidirectional(txtPasswordShow.textProperty());
-        fontIconUserID.setVisible(false);
+    private void loadMainForm(){
+        try {
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader
+                    .load(Objects.requireNonNull(getClass()
+                            .getResource("/view/main-form.fxml"))
+                    )
+            ));
+            stage.setTitle("Clothify System");
+            stage.setMaximized(true);
+            stage.getIcons().add(new Image("img/logo.jpg"));
+            stage.show();
+            ((Stage) btnClose.getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void txtUserIDOnKeyType(KeyEvent keyEvent) {
@@ -123,7 +161,7 @@ public class LoginFormController implements Initializable {
         String password = txtPassword.getText();
         if(!text.isEmpty()||!password.isEmpty()) {
             User user = userBo.getSelectedUser(text);
-            return user.getUserName().equals(text) && user.getUserPassword().equals(password);
+            return user.getId().equals(text) && user.getUserPassword().equals(password);
         }
         return false;
     }

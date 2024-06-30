@@ -2,8 +2,8 @@ package edu.icet.pos.controller.order;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.pos.bo.BoFactory;
+import edu.icet.pos.bo.custom.ItemBo;
 import edu.icet.pos.bo.custom.OrderBo;
-import edu.icet.pos.controller.item.ItemController;
 import edu.icet.pos.controller.item.ItemService;
 import edu.icet.pos.dto.tm.OrderItemTable;
 import edu.icet.pos.dto.Item;
@@ -42,7 +42,6 @@ public class PlaceOrderFormController implements Initializable {
     public TableColumn colDiscount;
     public TableColumn colNetPrice;
     public Label lblDiscount;
-    final ItemService itemService = ItemController.getInstance();
     public Label lblGrossPrice;
 
     @FXML
@@ -72,6 +71,7 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     private TextField txtQty;
     private final OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
+    private final ItemBo itemBo = BoFactory.getInstance().getBo(BoType.ITEM);
 
     ObservableList<OrderItemTable> list = FXCollections.observableArrayList();
 
@@ -237,16 +237,16 @@ public class PlaceOrderFormController implements Initializable {
     void loadInitialValues(String s, String string) {
         if(!s.isEmpty()) {
             if (string.equals("GET")) {
-                ObservableList selectedItems = itemService.getSelectedItems(s);
-                if (selectedItems != null) {
-                    listView.setItems(selectedItems);
+                ObservableList sameItems = itemBo.loadAllSame(s);
+                if (sameItems != null) {
+                    listView.setItems(sameItems);
                     listView.setVisible(true);
                 }
             } else if (string.equals("SET")) {
-                Item item = itemService.searchItem(s);
+                Item item = itemBo.getSelectedItem(s);
                 if (item != null) {
                     txtItemName.setText(item.getItemName());
-                    lblUnitPrice.setText("1500");
+                    lblUnitPrice.setText(String.valueOf(item.getSellingPrice()));
                     txtDiscount.setText("");
                     listView.setVisible(false);
                 }

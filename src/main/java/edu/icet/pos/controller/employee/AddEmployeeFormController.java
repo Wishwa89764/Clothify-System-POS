@@ -114,12 +114,12 @@ public class AddEmployeeFormController implements Initializable {
     @FXML
     void btnAddEmpPictureOnAction(ActionEvent event) throws IOException {
         setImage();
-
     }
 
 
     @FXML
     void btnAddNewEmpOnAction(ActionEvent event) {
+        String url = imgEmployee.getImage().getUrl();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateDob = null;
         Date recuitmentDate = null;
@@ -149,7 +149,7 @@ public class AddEmployeeFormController implements Initializable {
                     txtEmgAddress1.getText(),
                     txtEmpAddress2.getText(),
                     txtEmpAddress3.getText(),
-                    imgPath,
+                    url,
                     lblUserID.getText()
             );
             boolean b = employeeBo.saveEmployee(employee);
@@ -239,14 +239,20 @@ public class AddEmployeeFormController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image");
         File file = fileChooser.showOpenDialog(stage);
-        Image image = new Image(file.toURI().toString(), 121, 143, true, true);
+
+        BufferedImage myImage = ImageIO.read(new File(file.getAbsolutePath()));
+        ImageIO.write(myImage,
+                "jpg",
+                new File(
+                "F:\\ICET\\Java\\Java FX\\Final Course Work\\Clothify-System\\src\\main\\resources\\img\\userImage\\" + cmbEmpID.getPromptText() + ".jpg")
+        );
+        String url = "img/userImage/"+cmbEmpID.getPromptText()+".jpg";
+        Image image = new Image(url);
         imgEmployee.setImage(image);
         imgEmployee.setFitWidth(121);
         imgEmployee.setFitHeight(143);
         imgEmployee.setPreserveRatio(true);
 
-        BufferedImage myImage = ImageIO.read(new File(file.getAbsolutePath()));
-        ImageIO.write(myImage, "jpg", new File("F:\\ICET\\Java\\Java FX\\Final Course Work\\Clothify-System\\src\\main\\resources\\img\\" + cmbEmpID.getPromptText() + ".jpg"));
     }
 
     private void loadInitialValues() {

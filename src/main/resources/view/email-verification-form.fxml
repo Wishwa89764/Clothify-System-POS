@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="232.0" prefWidth="476.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.user.EmailVerificationFormController">
+   <children>
+      <FontAwesomeIconView fx:id="btnClose" glyphName="CLOSE" layoutX="454.0" layoutY="22.0" onMouseClicked="#btnCloseOnMouseClicked" size="25" />
+      <Label layoutX="129.0" layoutY="6.0" text="E-mail Verification Form">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Separator layoutY="39.0" prefHeight="0.0" prefWidth="476.0" />
+      <HBox layoutX="184.0" layoutY="42.0" prefHeight="30.0" prefWidth="109.0">
+         <children>
+            <Label text="OTP Sent " textFill="#041479">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#ebb504" glyphName="EXCLAMATION" size="25" />
+         </children>
+      </HBox>
+      <Label fx:id="lblEmail" alignment="CENTER" layoutY="81.0" prefHeight="17.0" prefWidth="476.0" text="email@gmail.com">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox layoutX="64.0" layoutY="174.0" prefHeight="21.0" prefWidth="366.0">
+         <children>
+            <Label prefHeight="31.0" prefWidth="252.0" text="If not recieved your OTP Code  &gt;&gt;&gt;">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnReSend" onAction="#btnReSendOnAction" text="Re Send" textFill="#0584d3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <HBox layoutX="95.0" layoutY="132.0" prefHeight="31.0" prefWidth="296.0">
+         <children>
+            <TextField fx:id="txtOtpCode" prefHeight="31.0" prefWidth="234.0" promptText="Enter Your OTP Code">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </TextField>
+            <JFXButton fx:id="btnVerify" buttonType="RAISED" onAction="#btnVerifyOnAction" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: #20bf6b;" text="Verify">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

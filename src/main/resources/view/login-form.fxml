@@ -74,7 +74,7 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <JFXButton layoutX="415.0" layoutY="237.0" onAction="#btnFogotPasswordOnAction" text="Forgot Password...?" textFill="#096cab" underline="true">
+      <JFXButton fx:id="btnFogotPassword" layoutX="415.0" layoutY="237.0" onAction="#btnFogotPasswordOnAction" text="Forgot Password...?" textFill="#096cab" underline="true">
          <font>
             <Font size="14.0" />
          </font>

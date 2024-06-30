@@ -1,6 +1,7 @@
 package edu.icet.pos.bo.custom.impl;
 
 import edu.icet.pos.bo.custom.UserBo;
+import edu.icet.pos.controller.user.AddUserFormController;
 import edu.icet.pos.dao.DaoFactory;
 import edu.icet.pos.dao.custom.UserDao;
 import edu.icet.pos.dto.User;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 
 public class UserBoImpl implements UserBo {
     private final UserDao userDao = DaoFactory.getInstance().getDao(DaoType.USER);
+    private static AddUserFormController addUserFormController;
     @Override
     public boolean saveNewUser(User dto) {
 
@@ -49,14 +51,28 @@ public class UserBoImpl implements UserBo {
     }
 
     @Override
-    public User getSelectedUser(String supplierID) {
-        return new ModelMapper().map(userDao.getSelected(supplierID),User.class);
+    public User getSelectedUser(String userID) {
+        return new ModelMapper().map(userDao.getSelected(userID),User.class);
 
     }
 
     @Override
     public boolean isExistUser(String userID) {
         User user = new ModelMapper().map(userDao.getSelected(userID), User.class);
-        return !user.getUserName().isEmpty();
+        if(user.getUserName()!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return userDao.getRecordsCount();
+    }
+
+    @Override
+    public void emailVerified(boolean b){
+        if(addUserFormController==null) addUserFormController = new AddUserFormController();
+        addUserFormController.addNewUser(b);
     }
 }

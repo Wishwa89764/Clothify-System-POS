@@ -58,4 +58,14 @@ public class OrderDaoImpl implements OrderDao {
 
         return (T) orderEntity;
     }
+
+    @Override
+    public ObservableList<String> getSameId(String string) {
+        return null;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return null;
+    }
 }

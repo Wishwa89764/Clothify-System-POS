@@ -14,6 +14,7 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     Session session = HibernateUtil.getSession();
+
     @Override
     public boolean save(UserEntity entity) {
         session.getTransaction().begin();
@@ -39,8 +40,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String getLastID() {
-        long resultCount = session.createQuery("SELECT COUNT(*) FROM user").getResultCount();
-        if(resultCount>0) {
+        Long recordsCount = getRecordsCount();
+
+        if (recordsCount > 0) {
             List resultList = session.createQuery("SELECT id FROM user ORDER BY id DESC LIMIT 1").getResultList();
 
             for (Object o : resultList) {
@@ -51,11 +53,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public <T> T getSelected(String id) {
-        session.getTransaction().begin();
-        UserEntity userEntity = session.get(UserEntity.class, id);
-        session.close();
-
+    public <T> T getSelected(String id) throws NullPointerException {
+        UserEntity userEntity;
+        userEntity = session.get(UserEntity.class, id);
+        if(userEntity==null){
+            return (T) new UserEntity();
+        }
         return (T) userEntity;
+    }
+
+    @Override
+    public ObservableList<String> getSameId(String string) {
+        return null;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return session.createQuery("SELECT COUNT(*) FROM user").getResultCount();
     }
 }

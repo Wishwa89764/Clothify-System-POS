@@ -19,7 +19,6 @@ public class ItemDaoImpl implements ItemDao {
         session.getTransaction().begin();
         session.persist(entity);
         session.getTransaction().commit();
-        session.close();
         return true;
     }
 
@@ -53,10 +52,28 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public <T> T getSelected(String id) {
-        session.getTransaction().begin();
+
         ItemEntity itemEntity = session.get(ItemEntity.class, id);
-        session.close();
+
 
         return (T) itemEntity;
+    }
+
+    @Override
+    public ObservableList<String> getSameId(String string) {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        String url = "SELECT id FROM item WHERE id LIKE '%"+string+"%'";
+        Query query = session.createQuery(url);
+        List resultList = query.getResultList();
+
+        for (Object o : resultList) {
+            list.add(o.toString());
+        }
+        return list;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return null;
     }
 }

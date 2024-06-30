@@ -10,4 +10,5 @@ public interface EmployeeBo extends SuperBo {
     String getNewEmployeeID();
 
     Employee getSelectedEmployee(String empID);
+
 }

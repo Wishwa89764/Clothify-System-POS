@@ -12,6 +12,9 @@ public class Item {
     private String itemCategory;
     private String itemName;
     private String description;
+    private String supplierID;
+    private double itemCost;
+    private double sellingPrice;
     private String imgUrl;
 
 }

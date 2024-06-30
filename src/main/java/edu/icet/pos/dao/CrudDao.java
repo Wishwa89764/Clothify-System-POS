@@ -9,4 +9,6 @@ public interface CrudDao <T> extends SuperDao{
     String getLastID();
 
     <T> T getSelected(String id);
+    ObservableList<String> getSameId(String string);
+    Long getRecordsCount();
 }

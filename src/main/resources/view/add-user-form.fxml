@@ -4,31 +4,19 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="439.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.user.AddUserFormController">
+<AnchorPane prefHeight="460.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.pos.controller.user.AddUserFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192a56" height="53.0" layoutX="-2.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="528.0" />
       <Label alignment="CENTER" layoutX="-4.0" prefHeight="51.0" prefWidth="528.0" text="Add New User" textFill="#f8f8f8">
          <font>
             <Font name="System Bold" size="35.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="cmbRole" layoutX="39.0" layoutY="62.0" onDragDetected="#cmbRoleOnAction" prefWidth="150.0" />
-      <Label layoutX="345.0" layoutY="60.0" text="ID" textFill="#900505">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblUserID" layoutX="382.0" layoutY="60.0" prefHeight="30.0" prefWidth="123.0" text="0000000" textFill="#220000">
-         <font>
-            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Separator layoutX="24.0" layoutY="99.0" prefHeight="0.0" prefWidth="486.0" />
@@ -39,18 +27,20 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUserName" alignment="CENTER" layoutX="118.0" layoutY="216.0" prefHeight="25.0" prefWidth="302.0" promptText="UserName(UserEmail)" />
-      <JFXPasswordField fx:id="txtUserPassword" alignment="CENTER" layoutX="119.0" layoutY="264.0" prefHeight="25.0" prefWidth="302.0" promptText="New Password" />
-      <JFXPasswordField fx:id="txtRepeatPassword" alignment="CENTER" layoutX="119.0" layoutY="312.0" prefHeight="25.0" prefWidth="302.0" promptText="Repeat Your New Password" />
-      <JFXButton buttonType="RAISED" layoutX="387.0" layoutY="382.0" onAction="#btnAddNewUserOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #3498db;" text="Add New" textFill="WHITE">
+      <JFXTextField fx:id="txtUserID" alignment="CENTER" layoutX="118.0" layoutY="203.0" prefHeight="25.0" prefWidth="302.0" promptText="User ID (Email)" />
+      <JFXTextField fx:id="txtUserName" alignment="CENTER" layoutX="118.0" layoutY="249.0" prefHeight="25.0" prefWidth="302.0" promptText="User Name" />
+      <JFXPasswordField fx:id="txtUserPassword" alignment="CENTER" layoutX="119.0" layoutY="297.0" prefHeight="25.0" prefWidth="302.0" promptText="New Password" />
+      <JFXPasswordField fx:id="txtRepeatPassword" alignment="CENTER" layoutX="119.0" layoutY="345.0" prefHeight="25.0" prefWidth="302.0" promptText="Repeat Your New Password" />
+      <JFXButton fx:id="btnAddNewUser" buttonType="RAISED" layoutX="387.0" layoutY="406.0" onAction="#btnAddNewUserOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #3498db;" text="Add New" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="246.0" layoutY="383.0" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #ff3f34;" text="Cancel" textFill="WHITE">
+      <JFXButton fx:id="btnCancel" buttonType="RAISED" layoutX="246.0" layoutY="407.0" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #ff3f34;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </JFXButton>
+      <ComboBox fx:id="cmbRole" layoutX="43.0" layoutY="63.0" onAction="#cmbRoleOnAction" prefWidth="150.0" promptText="Select Role" />
    </children>
 </AnchorPane>

@@ -12,5 +12,8 @@ public interface ItemBo extends SuperBo {
     ObservableList getAllItemID();
     String getNewItemID();
 
-    Employee getSelectedItem(String empID);
+    Item getSelectedItem(String empID);
+
+    ObservableList loadAllSame(String string);
+    Long getRecordsCount();
 }

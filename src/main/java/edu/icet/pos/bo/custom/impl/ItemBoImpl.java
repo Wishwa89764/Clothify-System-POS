@@ -52,8 +52,19 @@ public class ItemBoImpl implements ItemBo {
     }
 
     @Override
-    public Employee getSelectedItem(String empID) {
-        return new ModelMapper().map(itemDao.getSelected(empID),Employee.class);
+    public Item getSelectedItem(String empID) {
+        return new ModelMapper().map(itemDao.getSelected(empID),Item.class);
 
+    }
+
+    @Override
+    public ObservableList loadAllSame(String string) {
+        ObservableList<String> sameId = itemDao.getSameId(string);
+        return sameId;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return itemDao.getRecordsCount();
     }
 }

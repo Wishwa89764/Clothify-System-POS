@@ -17,7 +17,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         session.getTransaction().begin();
         session.persist(entity);
         session.getTransaction().commit();
-        session.close();
         return true;
     }
 
@@ -51,10 +50,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public <T> T getSelected(String id) {
-        session.getTransaction().begin();
+
         EmployeeEntity employeeEntity = session.get(EmployeeEntity.class, id);
-        session.close();
+
 
         return (T) employeeEntity;
+    }
+
+    @Override
+    public ObservableList<String> getSameId(String string) {
+        return null;
+    }
+
+    @Override
+    public Long getRecordsCount() {
+        return null;
     }
 }

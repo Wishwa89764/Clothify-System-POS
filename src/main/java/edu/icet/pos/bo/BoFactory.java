@@ -1,5 +1,6 @@
 package edu.icet.pos.bo;
 
+import edu.icet.pos.bo.custom.SendOtpBo;
 import edu.icet.pos.bo.custom.impl.*;
 import edu.icet.pos.utill.BoType;
 
@@ -17,6 +18,7 @@ public class BoFactory {
             case ORDER:return (T) new OrderBoImpl();
             case SUPPLIER:return (T) new SupplierBoImpl();
             case USER:return (T) new UserBoImpl();
+            case OTP:return (T) new SendOtpBoImpl();
         }
         return null;
     }
