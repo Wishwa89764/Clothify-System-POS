@@ -14,7 +14,8 @@ public class UserEntity {
     @Id
     private String id;
     private String userName;
-    private String userPassword;
+    private String salt;
+    private String securePassword;
     private String empID;
     private String role;
 }

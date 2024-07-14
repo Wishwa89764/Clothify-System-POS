@@ -10,6 +10,7 @@ import edu.icet.pos.bo.custom.ItemBo;
 import edu.icet.pos.bo.custom.SendOtpBo;
 import edu.icet.pos.bo.custom.UserBo;
 import edu.icet.pos.dto.Employee;
+import edu.icet.pos.dto.PasswordEncrypt;
 import edu.icet.pos.dto.User;
 import edu.icet.pos.utill.BoType;
 import javafx.application.Platform;
@@ -81,22 +82,20 @@ public class AddUserFormController implements Initializable {
     @FXML
     void btnAddNewUserOnAction(ActionEvent event) {
 
-        if(userBo.getRecordsCount()!=0){
             boolean isValidEmail= sendOtpBo.sendOTPCode(txtUserID.getText());
             if(isValidEmail){
                 createNewUser();
                 loadEmailVerificationForm();
-                ((Stage)btnAddNewUser.getScene().getWindow()).close();
+
              }else{
                 new Alert(Alert.AlertType.ERROR,"Invalid Email Address!").show();
              }
-        }
     }
     public void addNewUser(boolean result){
         if(result){
             boolean isSaved = userBo.saveNewUser(user);
-            user=null;
             if (isSaved) {
+                clearAll();
                 new Alert(Alert.AlertType.CONFIRMATION, "New User Added !").show();
 
             } else {
@@ -133,10 +132,12 @@ public class AddUserFormController implements Initializable {
                 empID = cmbEmployeeID.getPromptText();
                 userRole = cmbRole.getPromptText();
         }
+        PasswordEncrypt passwordEncrypt = PasswordEncryption.getInstance().generateEncryptPassword(txtUserPassword.getText());
         user=new User(
                 txtUserID.getText(),
                 txtUserName.getText(),
-                txtUserPassword.getText(),
+                passwordEncrypt.getSalt(),
+                passwordEncrypt.getEncryptedPassword(),
                 empID,
                 userRole
         );
@@ -166,7 +167,7 @@ public class AddUserFormController implements Initializable {
 
     }
 
-    private void clearText() {
+    private void clearAll() {
         cmbRole.setValue(null);
         cmbEmployeeID.setValue(null);
         lblEmployeeName.setText("");

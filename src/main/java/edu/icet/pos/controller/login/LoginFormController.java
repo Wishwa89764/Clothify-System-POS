@@ -7,6 +7,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.icet.pos.bo.BoFactory;
 import edu.icet.pos.bo.custom.UserBo;
 import edu.icet.pos.controller.mainForm.MainFormController;
+import edu.icet.pos.controller.user.VerifyUserPassword;
 import edu.icet.pos.dto.User;
 import edu.icet.pos.utill.BoType;
 import javafx.application.Platform;
@@ -157,11 +158,8 @@ public class LoginFormController implements Initializable {
     }
 
     private boolean isValidUserID() {
-        String text = txtUserID.getText();
-        String password = txtPassword.getText();
-        if(!text.isEmpty()||!password.isEmpty()) {
-            User user = userBo.getSelectedUser(text);
-            return user.getId().equals(text) && user.getUserPassword().equals(password);
+        if(!txtUserID.getText().isEmpty()||!txtPassword.getText().isEmpty()) {
+            return new VerifyUserPassword().isVerify(txtUserID.getText(), txtPassword.getText());
         }
         return false;
     }
